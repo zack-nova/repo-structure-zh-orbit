@@ -1,0 +1,7 @@
+schema_version: 1
+kind: source
+source:
+    package:
+        type: orbit
+        name: repo-structure-zh-orbit
+    source_branch: main

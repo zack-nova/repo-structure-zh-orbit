@@ -1,0 +1,4 @@
+interface:
+  display_name: "优化仓库结构"
+  short_description: "分析结构问题并提出小步重构建议"
+  default_prompt: "使用 $optimize-repo-structure 分析仓库结构问题，给出优化建议、最小下一步和验证方式；不要直接改文件或执行重构。"
