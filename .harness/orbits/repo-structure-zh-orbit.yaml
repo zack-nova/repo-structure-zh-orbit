@@ -45,20 +45,6 @@ capabilities:
             paths:
                 include:
                     - skills/repo-structure-zh-orbit/*
-content:
-    - name: guide-docs
-      role: rule
-      paths:
-        include:
-            - AGENTS.md
-            - BOOTSTRAP.md
-            - HUMANS.md
-            - README.md
-    - name: source-inventory
-      role: process
-      paths:
-        include:
-            - MANIFEST.md
 behavior:
     scope:
         projection_roles:
@@ -79,4 +65,3 @@ behavior:
     orchestration:
         include_orbit_description: true
         materialize_agents_from_meta: true
-
