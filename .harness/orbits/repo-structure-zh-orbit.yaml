@@ -1,0 +1,82 @@
+package:
+    type: orbit
+    name: repo-structure-zh-orbit
+name: Git 仓库结构治理
+description: 面向 Git 仓库的结构地图建议、模块边界诊断与安全小步重构建议流程
+meta:
+    file: .harness/orbits/repo-structure-zh-orbit.yaml
+    agents_template: |
+        # Git Repo Structure Orbit
+
+        这个 orbit 用来维护仓库的结构地图，让 Codex/agent 快速理解目录、关键文件、模块边界和职责说明。
+
+        用 `$sync-repo-structure-doc` 扫描真实目录并提出结构文档更新建议。默认建议目标为 `docs/repo-structure.md`；如果仓库已有明确结构文档路径，则沿用该路径给出建议。不要直接写入文件。
+
+        用 `$optimize-repo-structure` 分析大文件过长、职责混杂、层级不清、重复逻辑散落等结构问题；只输出建议、影响范围、最小下一步和验证方式，不直接移动文件、拆分模块、改 import 或写结构文档。
+
+        硬规则：分析前检查 git 状态；尊重用户已有改动；不要移动或修改生成物、依赖目录或 vendor 代码；任何结构改动都只作为建议列出，由用户另行确认执行。
+    humans_template: |
+        # Git Repo Structure Orbit 使用说明
+
+        这个 orbit 帮助开发者维护仓库结构地图，并在结构开始失控时做小步整理。
+
+        ## 常用方式
+
+        1. 同步结构文档建议：让 agent 使用 `$sync-repo-structure-doc`，扫描真实目录并提出 `docs/repo-structure.md` 或仓库指定结构文档路径的更新建议。
+        2. 诊断结构问题：让 agent 使用 `$optimize-repo-structure`，输出大文件、职责混杂、目录层级、重复逻辑和模块边界建议。
+        3. 规划小步重构：在建议明确后，让 agent 按 `$optimize-repo-structure` 输出低风险移动、拆分或 import 更新方案，并列出验证命令。
+
+        ## 开发者确认点
+
+        读取和分析可以直接执行。这个 orbit 的 skill 不直接写文件、移动文件、拆分模块、改公共入口、删除旧路径或更新 import；这些操作需要用户另行确认执行。
+    bootstrap_template: |
+        如果仓库还没有结构文档，建议创建 `docs/repo-structure.md`，并输出内容草案。
+
+        如果仓库已有 `docs/repository-structure.md`、`docs/repo-structure.md` 或团队约定路径，建议继续沿用已有路径。
+
+        如果仓库已经有不少内容，建议初始化后，立刻使用 `$sync-repo-structure-doc` 生成一次结构地图更新建议。
+    include_in_projection: true
+    include_in_write: true
+    include_in_export: true
+    include_description_in_orchestration: true
+capabilities:
+    skills:
+        local:
+            paths:
+                include:
+                    - skills/repo-structure-zh-orbit/*
+content:
+    - name: guide-docs
+      role: rule
+      paths:
+        include:
+            - AGENTS.md
+            - BOOTSTRAP.md
+            - HUMANS.md
+            - README.md
+    - name: source-inventory
+      role: process
+      paths:
+        include:
+            - MANIFEST.md
+behavior:
+    scope:
+        projection_roles:
+            - meta
+            - subject
+            - rule
+            - process
+        write_roles:
+            - meta
+            - rule
+        export_roles:
+            - meta
+            - rule
+        orchestration_roles:
+            - meta
+            - rule
+            - process
+    orchestration:
+        include_orbit_description: true
+        materialize_agents_from_meta: true
+

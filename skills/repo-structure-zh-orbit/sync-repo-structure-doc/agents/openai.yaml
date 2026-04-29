@@ -1,0 +1,4 @@
+interface:
+  display_name: "结构文档建议"
+  short_description: "扫描目录并提出结构地图更新建议"
+  default_prompt: "使用 $sync-repo-structure-doc 扫描真实仓库目录，并提出 docs/repo-structure.md 或仓库既有结构文档的更新建议；不要直接写入文件。"

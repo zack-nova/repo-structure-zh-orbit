@@ -1,0 +1,13 @@
+schema_version: 1
+kind: orbit_template
+template:
+    orbit_id: repo-structure-zh-orbit
+    default_template: false
+    created_from_branch: main
+    created_from_commit: 8b1435e8dc7b6436f43c7fca0ccaebbf20350784
+    created_at: 2026-04-29T02:08:33Z
+variables:
+    optimize:
+        required: true
+    sync:
+        required: true
