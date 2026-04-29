@@ -4,8 +4,8 @@ template:
     orbit_id: repo-structure-zh-orbit
     default_template: false
     created_from_branch: main
-    created_from_commit: 8b1435e8dc7b6436f43c7fca0ccaebbf20350784
-    created_at: 2026-04-29T02:08:33Z
+    created_from_commit: 4fd06be032820069634647b366a178857569b151
+    created_at: 2026-04-29T02:29:07Z
 variables:
     optimize:
         required: true
